@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Backend</title>
+    <title>Note App</title>
   </head>
   <body>
     <div
@@ -62,13 +62,14 @@
             <button
               class="bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-2 rounded-md"
             >
-              Read More
+            <a href="/files/<%= task %>" class="text-white">Read More </a>
             </button>
           </div>
         <% }) %>
       <% } else { %>
         <div class="taskCardItem flex items-center justify-between mb-4">
           <p class="text-gray-200 font-medium">No tasks added yet.</p>
+
         </div>
       <% } %>
       </div>

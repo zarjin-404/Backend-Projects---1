@@ -33,6 +33,16 @@ app.post('/create', (req, res) => {
   );
 });
 
+app.get('/files/:filename', (req, res) => {
+  fs.readFile(`./Task/${req.params.filename}`, 'utf8', (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('show', { filename: req.params.filename, Data: data });
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
