@@ -3,12 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Backend</title>
   </head>
   <body>
-    <h1 class="text-2xl text-[#895221]">Hello Express</h1>
+    <div
+      class="main w-full min-h-screen bg-gradient-to-br from-gray-900 via-zinc-800 to-gray-900 flex flex-col justify-center items-center p-6"
+    >
+      <!-- Form Section -->
+      <div class="form w-full max-w-md bg-zinc-700 p-6 rounded-xl shadow-lg">
+        <h2 class="text-2xl font-semibold text-gray-100 text-center mb-4">
+          Add a Task
+        </h2>
+        <form action="/create" method="POST" class="space-y-6">
+          <div>
+            <label for="taskTitle" class="block text-gray-200 font-medium mb-1"
+              >Task Title</label
+            >
+            <input
+              id="taskTitle"
+              type="text"
+              placeholder="Enter task title"
+              name="title"
+              class="block w-full p-3 rounded-md bg-zinc-800 text-gray-200 border border-zinc-600 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-shadow"
+            />
+          </div>
+          <div>
+            <label
+              for="taskDescription"
+              class="block text-gray-200 font-medium mb-1"
+              >Task Description</label
+            >
+            <textarea
+              id="taskDescription"
+              placeholder="Write your task here"
+              name="description"
+              class="block w-full p-3 rounded-md bg-zinc-800 text-gray-200 border border-zinc-600 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-shadow"
+              rows="4"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full p-3 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-zinc-700 transition-all"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+
+      <!-- Task Card Section -->
+      <div
+        class="taskCard w-full max-w-md bg-zinc-700 p-6 mt-6 rounded-xl shadow-lg text-center text-gray-400"
+      >
+      <% if(files.length > 0) { %>
+        <% files.forEach(task => { %>
+          <div class="taskCardItem flex items-center justify-between mb-4">
+            <p class="text-gray-200 font-medium"><%= task %></p>
+            <button
+              class="bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-2 rounded-md"
+            >
+              Read More
+            </button>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="taskCardItem flex items-center justify-between mb-4">
+          <p class="text-gray-200 font-medium">No tasks added yet.</p>
+        </div>
+      <% } %>
+      </div>
+    </div>
+
+        <p class="text-gray-300">No tasks added yet.</p>
+      </div>
+    </div>
+
     <script src="/javascripts/script.js"></script>
   </body>
 </html>
