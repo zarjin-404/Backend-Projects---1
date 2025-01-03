@@ -1,6 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const path = require('path');
+const { render } = require('ejs');
 const app = express();
 const port = 3000;
 
@@ -41,6 +42,24 @@ app.get('/files/:filename', (req, res) => {
       res.render('show', { filename: req.params.filename, Data: data });
     }
   });
+});
+
+app.get('/edits/:filename', (req, res) => {
+  res.render('edits', { filename: req.params.filename });
+});
+
+app.post('/edits', (req, res) => {
+  fs.rename(
+    `./Task/${req.body.OldTitle}`,
+    `./Task/${req.body.NewTitle}`,
+    (err) => {
+      if (err) {  
+        console.log(err);
+      } else {
+        res.redirect('/');
+      }
+    },
+  );
 });
 
 app.listen(port, () => {
